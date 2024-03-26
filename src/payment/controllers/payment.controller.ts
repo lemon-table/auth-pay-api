@@ -1,0 +1,42 @@
+import { Body, Controller, Post, Req } from '@nestjs/common';
+import { AuthService, UserService } from '../../auth/services';
+import { CreateOrderDto } from '../dto/create-order.dto';
+import { PaymentService } from '../services';
+// import { CreateUserDto, LoginReqDto, LoginResDto, RefreshReqDto, SignupResDto } from '../dto';
+
+@Controller('pay')
+export class PayMentController {
+    constructor(
+        private readonly authService: AuthService,
+        private readonly userService: UserService,
+        private readonly paymentService: PaymentService,
+    ) {}
+
+    // @Post('login')
+    // async login(@Req() req, @Body() loginReqDto: LoginReqDto): Promise<LoginResDto> {
+    //     const { ip, method, originalUrl } = req;
+    //     const reqInfo = {
+    //         ip,
+    //         endpoint: `${method} ${originalUrl}`,
+    //         ua: req.headers['user-agent'] || '',
+    //     };
+
+    //     return this.authService.login(loginReqDto.email, loginReqDto.password, reqInfo);
+    // }
+
+    // @Post('signup')
+    // async signup(@Body() createUserDto: CreateUserDto): Promise<SignupResDto> {
+    //     const user = await this.userService.createUser(createUserDto);
+    //     return {
+    //         id: user.id,
+    //         name: user.name,
+    //         email: user.email,
+    //         phone: user.phone,
+    //     };
+    // }
+
+    // @Post('refresh')
+    // async refresh(@Body() dto: RefreshReqDto): Promise<string> {
+    //     return this.authService.refreshAccessToken(dto.refreshToken);
+    // }
+}

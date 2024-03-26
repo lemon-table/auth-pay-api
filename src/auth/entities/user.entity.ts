@@ -2,8 +2,9 @@ import { Column, Entity, JoinColumn, OneToMany, OneToOne, Relation } from 'typeo
 import { BaseEntity } from '../../common/entity';
 import { RefreshToken } from './refresh-token.entity';
 import { AccessToken } from './access-token.entity';
+import { Point } from '../../payment/entities/point.entity';
+import { Order } from '../../payment/entities/order.entity';
 //import { AccessLog } from './access-log.entity';
-//import { Order, Point } from 'src/payment/entities';
 
 export type UserRole = 'admin' | 'user';
 
@@ -30,12 +31,12 @@ export class User extends BaseEntity {
     @Column({ default: false })
     isPersonalInfoVerified: boolean;
 
-    // @OneToOne(() => Point, (point) => point.user)
-    // @JoinColumn()
-    // point: Relation<Point>;
+    @OneToOne(() => Point, (point) => point.user)
+    @JoinColumn()
+    point: Relation<Point>;
 
-    // @OneToMany(() => Order, (orders) => orders.user)
-    // orders: Relation<Order[]>;
+    @OneToMany(() => Order, (orders) => orders.user)
+    orders: Relation<Order[]>;
 
     @OneToMany(() => AccessToken, (token) => token.user)
     accessToken: Relation<AccessToken[]>;
